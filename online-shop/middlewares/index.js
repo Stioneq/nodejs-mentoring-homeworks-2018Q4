@@ -1,5 +1,6 @@
 import cookieParser from './cookieParser';
 import queryParser from './queryParser';
+import jwtAuth from './jwt-auth';
 
 
 
@@ -7,4 +8,4 @@ import queryParser from './queryParser';
 
 
 
-export {cookieParser, queryParser};
+export {cookieParser, queryParser, jwtAuth};
