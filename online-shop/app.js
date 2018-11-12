@@ -11,7 +11,7 @@ app.use('/auth', authRouter);
 
 app.all('*', (req, res)=> {
     res.status(404).send('Page cannot be found');
-})
+});
 
 
 
