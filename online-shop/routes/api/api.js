@@ -10,3 +10,4 @@ router.use('/users', usersRouter);
 router.use('/products', productsRouter);
 
 export default router;
+

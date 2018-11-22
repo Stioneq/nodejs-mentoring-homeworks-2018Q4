@@ -14,9 +14,13 @@ const options = {
 let _client;
 
 
-mongo.connect('mongodb+srv://admin:<password>@cluster0-fdsjy.mongodb.net/test',
+mongo.connect('mongodb+srv://admin:qsefthukoroman92@cluster0-fdsjy.mongodb.net/test',
                 options
             ,(err, client) => {
+            if(err){
+                log('fail to connect to the db');
+                process.exit(1);
+            }    
             log('Connected to mongodb with poolSize=%d', 40);
             _client = client;
         });

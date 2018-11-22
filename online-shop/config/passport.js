@@ -6,6 +6,10 @@ import {
     User
 } from '../models';
 
+import config from './config.json';
+
+
+
 export default () => {
 
 
@@ -17,34 +21,30 @@ export default () => {
         })
     }));
 
-    passport.use(new googleOAuth.OAuth2Strategy({
-        clientID: "",
-        clientSecret: "",
-        callbackURL: "http://localhost:8080/auth/google/callback"
-    }, function (accessToken, refreshToken, profile, done) {
-        User.findOrCreate({
+    passport.use(new googleOAuth.OAuth2Strategy(
+        config.auth.google,
+        function (accessToken, refreshToken, profile, done) {
+            User.findOrCreate({
                 googleId: profile.id
             }).then(user => {
                 return done(null, user);
             })
-            .catch(err => {
-                return done(err);
-            });
-    }));
+                .catch(err => {
+                    return done(err);
+                });
+        }));
 
-    passport.use(new githubOAuth.Strategy({
-        clientID: "",
-        clientSecret: "",
-        callbackURL: "http://localhost:8080/auth/github/callback"
-    }, function (accessToken, refreshToken, profile, done) {
-        User.findOrCreate({
+    passport.use(new githubOAuth.Strategy(
+        config.auth.github,
+        function (accessToken, refreshToken, profile, done) {
+            User.findOrCreate({
                 githubId: profile.id
             })
-            .then(user => {
-                return done(null, user);
-            })
-            .catch(err => {
-                return done(err);
-            });
-    }));    
+                .then(user => {
+                    return done(null, user);
+                })
+                .catch(err => {
+                    return done(err);
+                });
+        }));
 }

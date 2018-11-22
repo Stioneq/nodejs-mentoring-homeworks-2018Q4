@@ -31,3 +31,5 @@ node_modules
 # IDE related files
 .idea
 .vscode
+.history
+online-shop/config/config.json

@@ -1,15 +1,19 @@
 import {
     Router
 } from 'express';
-import {
-    loginController
-} from '../../controllers';
 
+import googleRouter from './google';
+import githubRouter from './github';
+import loginRouter from './login';
 
 const router = Router();
 
 
 
-router.post('/', loginController.login);
+
+router.use('/login', loginRouter);
+router.use('/google', googleRouter)
+router.use('/github', githubRouter)
 
 export default router;
+
