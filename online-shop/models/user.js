@@ -1,13 +1,23 @@
+import { getDB } from "../utils/mongo";
 
 
 
+async function findAll(){
+    const db = getDB('auth');
+    
+    return db.collection('users').find().toArray();
+}
 
+async function findById(_id){
+    const db = getDB('auth');
+    
+    return db.collection('users').findOne({_id});
+}
 
+async function findOrCreate(user){
+    const db = getDB('auth');
+    const _user = await db.collection('users').findOne(user);
+    return _user || await db.collection('users').insertOne(user);
+}
 
-export const users = [
-    {name: 'Roman', password: '12345', email: 'Roman_Lapin@epam.com'},
-    {name: 'Petr', password: '12345', email: 'dasd@.ru'},
-    {name: 'Evgeniy', password: '12345', email: 'zdasdas@e.ru'},
-    {name: 'Sergey', password: '12345', email: 'sdsa2@da.ru'},
-    {name: 'Elena', password: '12345', email: 'elena@mail.su'},
-]
+export default {findAll, findById, findOrCreate};

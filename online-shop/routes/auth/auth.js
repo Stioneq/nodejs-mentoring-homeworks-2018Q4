@@ -10,6 +10,6 @@ const router = Router();
 
 
 
-router.post('/login', loginController.login);
+router.post('/', loginController.login);
 
 export default router;

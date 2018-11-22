@@ -1,6 +1,6 @@
-import {users} from './user';
+import User from './user';
 import {products} from './product';
 
 
 
-export {users, products};
+export {User, products};
